@@ -46,7 +46,7 @@
   font-size: 50px;
   border: 10px solid #f1f1f1;
   position: fixed;
-  top: 13%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -83,7 +83,25 @@
 <div class="bg-text">
   <div>
   Huelxo.com
-  </div>
+  <br>
+     <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around">
+                <form  style="font-size: 15px" method="POST" action="Palabra.php" enctype="multipart/form-data">
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                        <label for="palabra" class="col-form-label">Palabra</label>
+                        </div>
+                        <div class="col-md-2">
+                          <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                        </div>
+                        <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">Buscar</button><br>
+                        </div>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container registro">
