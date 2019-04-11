@@ -16,18 +16,12 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
-        }
-
-          /*Cempohualxochitl
+        }   /*Cempohualxochitl
             https://gourmetdemexico.com.mx/comida-y-cultura/10-cosas-sabias-la-flor-cempasuchil/#*/
-
 .bg-image {
   /* Full height */
-  height: 100%; 
-  
-  
+  height: 100%;  
   /* Center and scale the image nicely */
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,15 +65,19 @@
   text-align: center;
 }
 </style>
+
+<?php
+    $palabra = $_POST['palabra'];
+ ?>
     
 </head>
          	
   <div id="captioned-gallery">
         <img class="mySlides" src="img/Portada.jpg" style="width:100%">
   </div>
-
-
-
+<!--
+    INICIA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
+-->
 <div class="bg-text">
   <div>
   Huelxo.com
@@ -94,7 +92,7 @@
                         <label for="palabra" class="col-form-label">Palabra</label>
                         </div>
                         <div class="col-md-4">
-                          <input type="text" READONLY/ class="form-control" id="inputEmail3" placeholder="">
+                          <input type="text" READONLY/ class="form-control" id="palabra" placeholder=<?php echo "$palabra" ?>>
                         </div>
                       </div>
                 </form>
@@ -119,7 +117,13 @@
         </div>
     </div>
 </div>
+<!--
+    TERMINA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
+-->
 
+<!--
+    INCIA BLOQUE QUE MUESTRA LOS CONTEXTOS DE LA BÚSQUEDA
+-->
 <div class="container registro">
   <div class="bg-text2">
         <div class="d-flex justify-content-around">
