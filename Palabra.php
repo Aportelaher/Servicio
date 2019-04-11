@@ -56,7 +56,7 @@
   font-weight: bold;
   font-size: 20px;
   position: fixed;
-  top: 65%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
