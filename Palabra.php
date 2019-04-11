@@ -127,48 +127,11 @@
 <div class="container registro">
   <div class="bg-text2">
         <div class="d-flex justify-content-around">
-            <div class="col-md-6">
-                <h2>Buscar por Palabra</h2>
+            <div class="col-md-6" style="font-size: 20px">
+                <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
             </div>
             <div class="col-md-6">
-
-                <h2>Buscar por Expresión</h2>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-around">
-            <div class="d-flex justify-content-around">
-                <form method="POST" action="Palabra.php" enctype="multipart/form-data">
-                      <div class="form-group row">
-                        <div class="col-md-6">
-                        <label for="palabra" class="col-form-label">Palabra</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control" id="inputEmail3" placeholder="">
-                        </div>
-                      </div>
-                    <button type="submit" class="btn btn-primary">Buscar</button><br>
-                </form>
-            </div>
-                 <div class="d-flex justify-content-around">
-                    <form method="POST"  action="validaExp.php" enctype="multipart/form-data">
-                      <?php /*https://stackoverflow.com/questions/2000656/using-href-links-inside-option-tag*/?>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                            <label for="expresion" class="col-form-label">Categorías</label>
-                           </div>
-                            <div class="col-md-6">
-                                <select style="font-size: 15px" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name="expresion">
-                                  <option selected>Escoga...</option>
-                                  <option value="uno">Saludos </option>
-                                  <option value="dos">Dichos </option>
-                                  <option value="tres">Modismos </option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Buscar</button><br><br>
-                    </form>
-                </div>
+                <label>Usos Gramaticales de  "<?php echo "$palabra"  ?>"</label>
             </div>
         </div>
     </div>
