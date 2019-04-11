@@ -43,7 +43,7 @@
   background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   color: white;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 60px;
   border: 10px solid #f1f1f1;
   position: fixed;
   top: 20%;
@@ -84,18 +84,34 @@
   <div>
   Huelxo.com
   <br>
-     <div class="d-flex justify-content-around">
-            <div class="d-flex justify-content-around">
+     <div class="d-flex justify-content-center">
+            <div class="col-md-5">
                 <form  style="font-size: 15px" method="POST" action="Palabra.php" enctype="multipart/form-data">
-                      <div class="form-group row">
+                      <div class="d-flex justify-content-end">
+                        <div class="col-md-1">
+                        </div>
                         <div class="col-md-2">
                         <label for="palabra" class="col-form-label">Palabra</label>
                         </div>
+                        <div class="col-md-4">
+                          <input type="text" READONLY/ class="form-control" id="inputEmail3" placeholder="">
+                        </div>
+                      </div>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <form  style="font-size: 15px" method="POST" action="index.php" enctype="multipart/form-data">
+                      <div class="d-flex justify-content-start">
                         <div class="col-md-2">
-                          <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                        <label for="palabra" class="col-form-label">Traducción Literal</label>
+                        </div>
+                        <div class="col-md-3">
+                          <input type="text" READONLY/ class="form-control" id="inputEmail3" placeholder="">
+                        </div>
+                        <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary">Buscar Nueva Palabra</button><br>
                         </div>
                         <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary">Buscar</button><br>
                         </div>
                       </div>
                 </form>
