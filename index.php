@@ -22,12 +22,7 @@
             https://gourmetdemexico.com.mx/comida-y-cultura/10-cosas-sabias-la-flor-cempasuchil/#*/
 
 .bg-image {
-  /* Full height */
   height: 100%; 
-  
-  
-  /* Center and scale the image nicely */
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -100,7 +95,8 @@
                 <h2>Buscar por Expresión</h2>
             </div>
         </div>
-
+        <!--
+        -->
         <div class="d-flex justify-content-around">
             <div class="d-flex justify-content-around">
                 <form method="POST" action="Palabra.php" enctype="multipart/form-data">
@@ -109,7 +105,7 @@
                         <label for="palabra" class="col-form-label">Palabra</label>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" class="form-control" id="inputEmail3" placeholder="">
+                          <input type="text" class="form-control" id="palabra" placeholder="" name="palabra">
                         </div>
                       </div>
                     <button type="submit" class="btn btn-primary">Buscar</button><br>
