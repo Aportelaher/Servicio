@@ -172,6 +172,15 @@
                             mysqli_close($link);
                             //update pelicula set imagen=('/imagen6.jpg') where id_pelicula=6;
                         ?>
+
+
+
+<div class="container registro">
+  <div class="bg-text2">
+        <div class="d-flex justify-content-around">
+            <div class="col-md-6" style="font-size: 20px">
+                <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
+
             </div>
             <div class="col-md-6">
                 <label>Usos Gramaticales de  "<?php echo "$palabra"  ?>"</label>
