@@ -11,7 +11,7 @@
 
 <?php
   $palabra = $_POST['palabra'];
-  $link = mysqli_connect("localhost", "root", "") or
+  $link = mysqli_connect("localhost", "hugo", "12345") or
   die("Could not connect: " . mysqli_error());
   mysqli_set_charset( $link, 'utf8');
   mysqli_select_db($link,"Servicio");
