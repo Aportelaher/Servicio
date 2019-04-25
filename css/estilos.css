@@ -1,0 +1,10 @@
+html{
+	/* background-image: url("../img/Portada.jpg"); */
+}
+.titulo{
+	margin-top: 100px;
+	border-style: solid;
+  	border-color: green;
+  	border-left-style: none;
+  	border-right-style: none;
+}

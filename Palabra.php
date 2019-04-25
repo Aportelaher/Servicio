@@ -5,121 +5,99 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hualxo.com</title>
 	<link rel="stylesheet" href="dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css">
-
-    <style>
-        body, html 
-        {
-            height: 100%;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
-        }   /*Cempohualxochitl
-            https://gourmetdemexico.com.mx/comida-y-cultura/10-cosas-sabias-la-flor-cempasuchil/#*/
-.bg-image {
-  /* Full height */
-  height: 100%;  
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Images used */
-.img1 { background-image: url("img/Portada.jpg"); } 
-
-
-/* Position text in the middle of the page/image */
-.bg-text {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-  color: white;
-  font-weight: bold;
-  font-size: 60px;
-  border: 10px solid #f1f1f1;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 1500px;
-  padding: 20px;
-  text-align: center;
-}
-
-.bg-text2 {
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  position: fixed;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 1200px;
-  padding: 0px;
-  text-align: center;
-}
-</style>
+	<!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
 <?php
-    $palabra = $_POST['palabra'];
- ?>
+  $palabra = $_POST['palabra'];
+  $link = mysqli_connect("localhost", "root", "") or
+  die("Could not connect: " . mysqli_error());
+  mysqli_set_charset( $link, 'utf8');
+  mysqli_select_db($link,"Servicio");
+?>
     
 </head>
-         	
-  <div id="captioned-gallery">
-        <img class="mySlides" src="img/Portada.jpg" style="width:100%">
-  </div>
 <!--
     INICIA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
 -->
-<div class="bg-text">
-  <div>
-  Huelxo.com
-  <br>
-     <div class="d-flex justify-content-center">
-            <div class="col-md-5">
-                <form  style="font-size: 15px" method="POST" action="Palabra.php" enctype="multipart/form-data">
-                      <div class="d-flex justify-content-end">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-2">
-                        <label for="palabra" class="col-form-label">Palabra</label>
-                        </div>
-                        <div class="col-md-4">
-                          <input type="text" READONLY/ class="form-control" id="palabra" placeholder=<?php echo "$palabra" ?>>
-                        </div>
-                      </div>
-                </form>
-            </div>
-            <div class="col-md-7">
-                <form  style="font-size: 15px" method="POST" action="index.php" enctype="multipart/form-data">
-                      <div class="d-flex justify-content-start">
-                        <div class="col-md-2">
-                        <label for="palabra" class="col-form-label">Traducción Literal</label>
-                        </div>
-                        <div class="col-md-3">
-                          <input type="text" READONLY/ class="form-control" id="inputEmail3" placeholder="">
-                        </div>
-                        <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Buscar Nueva Palabra</button><br>
-                        </div>
-                        <div class="col-md-2">
-                        </div>
-                      </div>
-                </form>
-            </div>
-        </div>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-12 titulo">
+      <h1>Huelxo.com</h1>
     </div>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    
+    <div class="d-flex justify-content-center">
+      <div class="col-md-5">
+        <div class="d-flex justify-content-end">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-2">
+            <label for="palabra" class="col-form-label">Palabra</label>
+          </div>
+          <div class="col-md-4">
+            <input type="text" READONLY class="form-control" id="palabra" placeholder=<?php echo "$palabra" ?>>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="d-flex justify-content-start">
+          <div class="col-md-2">
+            <label for="palabra" class="col-form-label">Traducción Literal</label>
+          </div>
+          <div class="col-md-3">
+            <?php
+              $query = "SELECT Traducción from concentrado_P WHERE Palabra LIKE '%".$palabra."%'";
+              $result = mysqli_query($link,$query);
+              if (mysqli_num_rows($result)>0)
+              {
+                ?><input type="text" READONLY class="form-control" id="inputEmail3" placeholder="<?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                {
+                  if ($i < mysqli_num_rows($result))
+                  {
+                    echo($row['Traducción'].", ");
+                  }else{
+                    echo($row['Traducción']);
+                  }
+                  $i++;
+                }
+                ?>
+                ">
+                <?php
+              }else{
+                ?>
+                <input type="text" READONLY/ class="form-control" id="inputEmail3" placeholder="">
+                <?php
+              }
+            ?>
+          </div>
+          <div class="col-md-3">
+            <a href="index.php" class="btn btn-primary">Buscar Nueva Palabra</a><br>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="error"></div>
+    </div>
+  </div>
 </div>
 <!--
     TERMINA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
 -->
+<<<<<<< HEAD
 
 
 
@@ -183,19 +161,117 @@
             <div class="col-md-6" style="font-size: 20px">
                 <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
 
+=======
+<!-- Parte table
+?>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Palabra</th>
+                        <th>Traducción</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                  <?php
+
+                  if (mysqli_num_rows($result)>0)
+                  {
+                    while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                    {
+                      $palab = $row["Palabra"];
+                      $trad = $row["Traducción"];
+                      $camp = $row["Campo_Semántico"];
+                      ?>
+                        <tr>
+                          <td><?php echo "$palab"; ?></td>
+                          <td><?php echo "$trad"; ?></td>
+                        </tr>
+                      <?php
+                    }
+                  }
+                  ?>
+                    </tbody>
+                  </table> -->
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Contextos en los que se emplea "<?php echo "$palabra"  ?>"</h5>
+              <?php
+                $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && Palabra LIKE '%$palabra%'";
+                $result=mysqli_query($link,$query);
+                if (mysqli_num_rows($result)>0)
+                {
+                  while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                  {
+                    ?>
+                    <div class="row mt-3">
+                      <div class="col-md-6 col-12">
+                        <div class="card">
+                          <div class="card-header text-center">
+                            <?php echo ($row['Campo_Semántico']); ?>
+                          </div>
+                          <div class="card-body">
+                            <?php
+                              $query2 = "";
+                            ?>
+                          </div>
+                        </div>
+                      </div>
+                      <?php
+                      if ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+                        ?>
+                          <div class="col-md-6 col-12 col-sm-12">
+                            <div class="card">
+                              <div class="card-header text-center">
+                                <?php echo ($row['Campo_Semántico']); ?>
+                              </div>
+                              <div class="card-body">
+                                asdasdasd
+                              </div>
+                            </div>
+                          </div>
+                        <?php                      
+                      }
+                      ?>
+                    </div>
+                    <?php
+                  }
+                }else{
+                  echo "Fallo al obtener Contextos";
+                }
+              ?>
+              
+>>>>>>> 742aad0b5ca34970fd1716a78b9adf628538ed98
             </div>
-            <div class="col-md-6">
-                <label>Usos Gramaticales de  "<?php echo "$palabra"  ?>"</label>
-            </div>
+          </div>
         </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Usos Gramaticales de  "<?php echo "$palabra"  ?>"</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
+<?php
+  mysqli_free_result($result);
+  mysqli_close($link);
+?>
 
 	<script src="dist/jquery/jquery.slim.min.js"></script>
 	<script src="dist/js/bootstrap.min.js"></script>
 	<script src="dist/popper/umd/popper.min.js"></script>
-
-
+  <script src="js/errores.js"></script>
 </body>
 </html>
