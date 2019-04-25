@@ -121,15 +121,28 @@
     TERMINA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
 -->
 
-<!--
+
+
+
+
+
+<div class="container registro">
+  <div class="bg-text2">
+        <div class="d-flex justify-content-around">
+            <div class="col-md-6" style="font-size: 20px">
+                <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
+                <!--
     INCIA BLOQUE QUE MUESTRA LOS CONTEXTOS DE LA BÚSQUEDA
 -->
  <table border="20">
                   <?php
-                            $link=mysqli_connect("localhost", "hugo", "12345");//Query de la base de Datos
+                            $link=mysqli_connect("localhost", "root", "");//Query de la base de Datos
                             mysqli_select_db($link, "Servicio"); 
                             $result = mysqli_query($link, "select * from concentrado_P where ID <= 100;");
-                            while($row= mysqli_fetch_array($result))
+                            echo "select * from concentrado_P where ID <= 100;";
+                            if ($result)
+                            {
+                              while($row= mysqli_fetch_array($result))
                             {
                                 $ID = $row["ID"];
                                 $palab = $row["Palabra"];
@@ -150,20 +163,15 @@
                                 </tr>
                                 <?php
                             }
+                            }else{
+                              echo "<br>Error al obtener datos";
+                            }
+                            
                             echo ("</table>");
                             mysqli_free_result($result);
                             mysqli_close($link);
                             //update pelicula set imagen=('/imagen6.jpg') where id_pelicula=6;
                         ?>
-
-
-
-
-<div class="container registro">
-  <div class="bg-text2">
-        <div class="d-flex justify-content-around">
-            <div class="col-md-6" style="font-size: 20px">
-                <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
             </div>
             <div class="col-md-6">
                 <label>Usos Gramaticales de  "<?php echo "$palabra"  ?>"</label>
