@@ -136,12 +136,15 @@
 -->
 <table border="20">
   <?php
-    $link = mysqli_connect("localhost", "root", "") or
+    $link = mysqli_connect("localhost", "hugo", "12345") or
     die("Could not connect: " . mysqli_error());
     mysqli_set_charset( $link, 'utf8');
     mysqli_select_db($link,"Servicio");
-    $query = "select * from concentrado_P where ID <= 100";
-    $result=mysqli_query($link,$query);
+
+    $query = "select distinct Campo_Semántico, Palabra, Traducción from Concentrado_P as V1 inner join (select  Campo_Semántico as Res from Concentrado_P) as V2 on V1.Campo_Semántico = V2.Res WHERE Palabra LIKE '%$palabra%' and Campo_Semántico != 'Expresión' limit 2"; 
+
+
+    $result = mysqli_query($link,$query);
     if (mysqli_num_rows($result)>0)
     {
       while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
@@ -165,7 +168,7 @@
         </tr>
         <?php
       }
-    }
+    }else
     echo ("</table>");
     mysqli_free_result($result);
     mysqli_close($link);
