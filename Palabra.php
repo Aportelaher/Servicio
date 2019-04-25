@@ -124,6 +124,41 @@
 <!--
     INCIA BLOQUE QUE MUESTRA LOS CONTEXTOS DE LA BÚSQUEDA
 -->
+ <table border="20">
+                  <?php
+                            $link=mysqli_connect("localhost", "hugo", "12345");//Query de la base de Datos
+                            mysqli_select_db($link, "Servicio"); 
+                            $result = mysqli_query($link, "select * from concentrado_P where ID <= 100;");
+                            while($row= mysqli_fetch_array($result))
+                            {
+                                $ID = $row["ID"];
+                                $palab = $row["Palabra"];
+                                $trad = $row["Traducción"];
+                                $tipo= $row["Tipo"];
+                                $gen = $row["Género"];
+                                $camp = $row["Campo_Semántico"];
+                                $grupo = $row['Grupo'];
+                                ?>
+                                <tr>
+                                  <td><?php echo "$ID"; ?></td>
+                                  <td><?php echo "$palab"; ?></td>
+                                  <td><?php echo "$trad"; ?></td>
+                                  <td><?php echo "$tipo"; ?></td>
+                                  <td><?php echo "$gen"; ?></td>
+                                  <td><?php echo "$camp"; ?></td>
+                                  <td><?php echo "$grupo"; ?></td>
+                                </tr>
+                                <?php
+                            }
+                            echo ("</table>");
+                            mysqli_free_result($result);
+                            mysqli_close($link);
+                            //update pelicula set imagen=('/imagen6.jpg') where id_pelicula=6;
+                        ?>
+
+
+
+
 <div class="container registro">
   <div class="bg-text2">
         <div class="d-flex justify-content-around">
