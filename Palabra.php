@@ -158,7 +158,6 @@
 
 
 
-
 <div class="container registro">
   <div class="bg-text2">
         <div class="d-flex justify-content-around">

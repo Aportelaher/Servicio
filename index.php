@@ -80,7 +80,7 @@
   ¡BIENVENIDO!
   </div>
     <div style="font-size: 25px">
-  Huelxo.com
+  Hualxo.com
   </div>
 </div>
 
