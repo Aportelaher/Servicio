@@ -9,9 +9,12 @@
 	<!-- <link rel="stylesheet" href="css/style.css"> -->
   <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
+  <style>
+  .img1 { background-image: url("img/Portada.jpg"); } 
+  </style>
 <?php
   $palabra = $_GET['palabra'];
-  $contexto = $_GET¨['contexto'];
+  $contexto = $_GET['contexto'];
 
   $link = mysqli_connect("localhost", "hugo", "12345") or
   die("Could not connect: " . mysqli_error());
@@ -23,6 +26,7 @@
 <!--
     INICIA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
 -->
+
 <div class="container">
   <div class="row text-center">
     <div class="col-md-12 titulo">
@@ -30,6 +34,9 @@
     </div>
   </div>
 </div>
+<!--<br><br>
+<img class="mySlides" src="img/Portada.jpg" style="width:100%">-->
+
 <div class="container mt-4">
   <div class="row">
     
@@ -53,7 +60,7 @@
           </div>
           <div class="col-md-3">
             <?php
-              $query = "SELECT Traducción from concentrado_P WHERE Palabra = '$palabra.'";
+              $query = "SELECT Traducción from concentrado_P WHERE Palabra = '$palabra'";
               $result = mysqli_query($link,$query);
 
               if (mysqli_num_rows($result)>0)

@@ -11,7 +11,7 @@
 
 <?php
   $palabra = $_POST['palabra'];
-  $link = mysqli_connect("localhost", "root", "") or
+  $link = mysqli_connect("localhost", "hugo", "12345") or
   die("Could not connect: " . mysqli_error());
   mysqli_set_charset( $link, 'utf8');
   mysqli_select_db($link,"Servicio");
@@ -109,7 +109,8 @@
             <div class="card-body">
               <h5 class="card-title text-center">Contextos en los que se emplea "<?php echo "$palabra"  ?>"</h5>
               <?php
-                $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && Palabra LIKE '%$palabra%'";
+                $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && 
+                Campo_Semántico != 'Gramática' &&Palabra LIKE '%$palabra%'";
                 $result=mysqli_query($link,$query);
                 if (mysqli_num_rows($result)>0)
                 {

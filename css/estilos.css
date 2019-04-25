@@ -8,3 +8,10 @@ html{
   	border-left-style: none;
   	border-right-style: none;
 }
+
+.bg-image {
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
