@@ -11,7 +11,7 @@
 
 <?php
   $palabra = $_POST['palabra'];
-  $link = mysqli_connect("localhost", "hugo", "12345") or
+  $link = mysqli_connect("localhost", "root", "") or
   die("Could not connect: " . mysqli_error());
   mysqli_set_charset( $link, 'utf8');
   mysqli_select_db($link,"Servicio");
@@ -97,101 +97,8 @@
 <!--
     TERMINA BLOQUE QUE MUESTRA RESULTADO DE BUSQUEDA LITERAL Y MUESTRA LA PALABRA BUSCADA
 -->
-<<<<<<< HEAD
-
-
-
-
-
-
-<div class="container registro">
-  <div class="bg-text2">
-        <div class="d-flex justify-content-around">
-            <div class="col-md-6" style="font-size: 20px">
-                <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
-                <!--
-    INCIA BLOQUE QUE MUESTRA LOS CONTEXTOS DE LA BÚSQUEDA
--->
-<table border="20">
-  <?php
-    $link = mysqli_connect("localhost", "hugo", "12345") or
-    die("Could not connect: " . mysqli_error());
-    mysqli_set_charset( $link, 'utf8');
-    mysqli_select_db($link,"Servicio");
-
-    $query = "select distinct Campo_Semántico, Palabra, Traducción from Concentrado_P as V1 inner join (select  Campo_Semántico as Res from Concentrado_P) as V2 on V1.Campo_Semántico = V2.Res WHERE Palabra LIKE '%$palabra%' and Campo_Semántico != 'Expresión' limit 2"; 
-
-
-    $result = mysqli_query($link,$query);
-    if (mysqli_num_rows($result)>0)
-    {
-      while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-      {
-        $ID = $row["ID"];
-        $palab = $row["Palabra"];
-        $trad = $row["Traducción"];
-        $tipo= $row["Tipo"];
-        $gen = $row["Género"];
-        $camp = $row["Campo_Semántico"];
-        $grupo = $row['Grupo'];
-        ?>
-        <tr>
-          <td><?php echo "$ID"; ?></td>
-          <td><?php echo "$palab"; ?></td>
-          <td><?php echo "$trad"; ?></td>
-          <td><?php echo "$tipo"; ?></td>
-          <td><?php echo "$gen"; ?></td>
-          <td><?php echo "$camp"; ?></td>
-          <td><?php echo "$grupo"; ?></td>
-        </tr>
-        <?php
-      }
-    }else
-    echo ("</table>");
-    mysqli_free_result($result);
-    mysqli_close($link);
-    //update pelicula set imagen=('/imagen6.jpg') where id_pelicula=6;
-  ?>
-
-
-
-<div class="container registro">
-  <div class="bg-text2">
-        <div class="d-flex justify-content-around">
-            <div class="col-md-6" style="font-size: 20px">
-                <label>Contextos en los que se emplea "<?php echo "$palabra"  ?>"</label>
-
-=======
 <!-- Parte table
-?>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Palabra</th>
-                        <th>Traducción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                  <?php
-
-                  if (mysqli_num_rows($result)>0)
-                  {
-                    while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-                    {
-                      $palab = $row["Palabra"];
-                      $trad = $row["Traducción"];
-                      $camp = $row["Campo_Semántico"];
-                      ?>
-                        <tr>
-                          <td><?php echo "$palab"; ?></td>
-                          <td><?php echo "$trad"; ?></td>
-                        </tr>
-                      <?php
-                    }
-                  }
-                  ?>
-                    </tbody>
-                  </table> -->
+-->
 
 <div class="container mt-4">
   <div class="row">
@@ -213,12 +120,42 @@
                       <div class="col-md-6 col-12">
                         <div class="card">
                           <div class="card-header text-center">
-                            <?php echo ($row['Campo_Semántico']); ?>
+                            <?php
+                              $context = $row['Campo_Semántico'];
+                            ?>
+                            <a href="Contexto.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
                           </div>
                           <div class="card-body">
                             <?php
-                              $query2 = "";
-                            ?>
+                              $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '" . $row['Campo_Semántico'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
+                              $result2=mysqli_query($link,$query2);
+                              ?>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Palabra</th>
+                                    <th>Traducción</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <?php
+                                  if (mysqli_num_rows($result2)>0)
+                                  {
+                                    while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
+                                    {
+                                      $palab = $row2["Palabra"];
+                                      $trad = $row2["Traducción"];
+                                      ?>
+                                      <tr>
+                                        <td><?php echo "$palab"; ?></td>
+                                        <td><?php echo "$trad"; ?></td>
+                                      </tr>
+                                      <?php
+                                    }
+                                  }
+                                  ?>
+                                </tbody>
+                              </table> 
                           </div>
                         </div>
                       </div>
@@ -228,10 +165,39 @@
                           <div class="col-md-6 col-12 col-sm-12">
                             <div class="card">
                               <div class="card-header text-center">
-                                <?php echo ($row['Campo_Semántico']); ?>
+                                <a href="Contexto.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
                               </div>
                               <div class="card-body">
-                                asdasdasd
+                                <?php
+                                $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '" . $row['Campo_Semántico'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
+                                $result2=mysqli_query($link,$query2);
+                                ?>
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Palabra</th>
+                                      <th>Traducción</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php
+                                    if (mysqli_num_rows($result2)>0)
+                                    {
+                                      while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
+                                      {
+                                        $palab = $row2["Palabra"];
+                                        $trad = $row2["Traducción"];
+                                        ?>
+                                        <tr>
+                                          <td><?php echo "$palab"; ?></td>
+                                          <td><?php echo "$trad"; ?></td>
+                                        </tr>
+                                        <?php
+                                      }
+                                    }
+                                    ?>
+                                  </tbody>
+                                </table> 
                               </div>
                             </div>
                           </div>
@@ -246,7 +212,6 @@
                 }
               ?>
               
->>>>>>> 742aad0b5ca34970fd1716a78b9adf628538ed98
             </div>
           </div>
         </div>
