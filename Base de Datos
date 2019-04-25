@@ -19,8 +19,6 @@ USE Servicio;
 --
 -- Table structure for table `Concentrado_P`
 --
-CREATE DATABASE asd;
-USE asd;
 
 CREATE TABLE `Concentrado_P` (
   `ID` varchar(4) DEFAULT NULL,
