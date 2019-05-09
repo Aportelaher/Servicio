@@ -179,19 +179,15 @@
                 {
                   while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
                   {
-
                     $context = $row['Tipo'];
                     if ($context != '') {
                       ?>
-
-                    ?>
-
                       <div class="row mt-3">
                         <div class="col-md-12 col-12">
                           <div class="card">
                             <div class="card-header text-center">
 
-                              <a href="usoGram.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
+                              <a href="Contexto.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
                             </div>
                             <div class="card-body">
                               <?php
@@ -225,7 +221,7 @@
                         </div>
                       </div>
                       <?php
-                    
+                    }
                   }
                 }else{
                   echo "Fallo al obtener Contextos";
