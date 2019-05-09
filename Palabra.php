@@ -187,7 +187,7 @@
                           <div class="card">
                             <div class="card-header text-center">
 
-                              <a href="Contexto.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
+                              <a href="usoGram.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
                             </div>
                             <div class="card-body">
                               <?php
