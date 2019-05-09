@@ -173,14 +173,13 @@
             <div class="card-body">
               <h5 class="card-title text-center">Usos Gramaticales de  "<?php echo "$palabra"  ?>"</h5>
               <?php
-                $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && 
-                Campo_Semántico != 'Gramática' && Campo_Semántico != ' ' && Campo_Semántico != '.' && Campo_Semántico != '?' &&Palabra LIKE '%$palabra%'";
+                $query = "SELECT distinct Palabra, Traducción FROM concentrado_P WHERE Tipo != 'Expresión' && Palabra LIKE '%$palabra%'";
                 $result=mysqli_query($link,$query);
                 if (mysqli_num_rows($result)>0)
                 {
                   while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
                   {
-                    $context = $row['Campo_Semántico'];
+                    $context = $row['Tipo'];
                     if ($context != '') {
                       ?>
                       <div class="row mt-3">
@@ -192,7 +191,7 @@
                             </div>
                             <div class="card-body">
                               <?php
-                              $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '" . $row['Campo_Semántico'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
+                              $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Tipo = '" . $row['Tipo'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
                               $result2=mysqli_query($link,$query2);
                               ?>
                               <table class="table">
