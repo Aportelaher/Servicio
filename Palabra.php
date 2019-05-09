@@ -173,7 +173,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">Usos Gramaticales de  "<?php echo "$palabra"  ?>"</h5>
               <?php
-                $query = "SELECT distinct Palabra, Traducción FROM concentrado_P WHERE Tipo != 'Expresión' && Palabra LIKE '%$palabra%'";
+                $query = "SELECT distinct Tipo FROM concentrado_P WHERE Tipo != 'Expresión' && Palabra LIKE '%$palabra%'";
                 $result=mysqli_query($link,$query);
                 if (mysqli_num_rows($result)>0)
                 {
