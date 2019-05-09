@@ -181,46 +181,45 @@
                   while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
                   {
                     ?>
-                      <div class="row mt-3">
-                        <div class="col-md-12 col-12">
-                          <div class="card">
-                            <div class="card-header text-center">
+                    <div class="row mt-3">
+                      <div class="col-md-12 col-12">
+                        <div class="card">
+                          <div class="card-header text-center">
 
-                              <a href="usoGram.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
-                            </div>
-                            <div class="card-body">
-                              <?php
-                              $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '" . $row['Campo_Semántico'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
-                              $result2=mysqli_query($link,$query2);
-                              ?>
-                              <table class="table">
-                                
-                                <tbody>
-                                  <?php
-                                  if (mysqli_num_rows($result2)>0)
+                            <a href="usoGram.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
+                          </div>
+                          <div class="card-body">
+                            <?php
+                            $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '" . $row['Campo_Semántico'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
+                            $result2=mysqli_query($link,$query2);
+                            ?>
+                            <table class="table">
+
+                              <tbody>
+                                <?php
+                                if (mysqli_num_rows($result2)>0)
+                                {
+                                  while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
                                   {
-                                    while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
-                                    {
-                                      $palab = $row2["Palabra"];
-                                      $trad = $row2["Traducción"];
+                                    $palab = $row2["Palabra"];
+                                    $trad = $row2["Traducción"];
                                       //palab = PALABRA EN ESPAÑOL
                                       //trad = TRADUCCION
-                                      ?>
-                                      <tr>
-                                        <td class="text-center"><?php echo "$palab"; ?></td>
-                                      </tr>
-                                      <?php
-                                    }
+                                    ?>
+                                    <tr>
+                                      <td class="text-center"><?php echo "$palab"; ?></td>
+                                    </tr>
+                                    <?php
                                   }
-                                  ?>
-                                </tbody>
-                              </table> 
-                            </div>
+                                }
+                                ?>
+                              </tbody>
+                            </table> 
                           </div>
                         </div>
                       </div>
-                      <?php
-                    
+                    </div>
+                    <?php
                   }
                 }else{
                   echo "Fallo al obtener Contextos";
