@@ -110,7 +110,7 @@
               <h5 class="card-title text-center">Contextos en los que se emplea "<?php echo "$palabra"  ?>"</h5>
               <?php
                 $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && 
-                Campo_Semántico != 'Gramática' &&Palabra LIKE '%$palabra%'";
+                Campo_Semántico != 'Gramática' && Campo_Semántico != ' ' &&Palabra LIKE '%$palabra%'";
                 $result=mysqli_query($link,$query);
                 if (mysqli_num_rows($result)>0)
                 {
