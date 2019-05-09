@@ -120,10 +120,13 @@
                         <div class="card">
                           <div class="card-header text-center">
                             <?php 
-                                  echo "Contexto: $contexto";
+                                  echo "Contexto";
                             ?>
                           </div>
-                          <div class="card-body">
+                          <div class="card-body text-center">
+                            <?php 
+                                  echo "$contexto";
+                            ?>
                           </div>
                         </div>
                       </div>
@@ -135,7 +138,6 @@
                               <div class="card-header text-center">
                               </div>
                               <div class="card-body">
-                                asdasdasd
                               </div>
                             </div>
                           </div>
