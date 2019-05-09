@@ -11,10 +11,11 @@
 
 <?php
   $palabra = $_POST['palabra'];
-  $link = mysqli_connect("localhost", "hugo", "12345") or
+  require_once 'config/config.php';
+  $link = mysqli_connect($hostname, $username, $password) or
   die("Could not connect: " . mysqli_error());
   mysqli_set_charset( $link, 'utf8');
-  mysqli_select_db($link,"Servicio");
+  mysqli_select_db($link,$database);
 ?>
     
 </head>
