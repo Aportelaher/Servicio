@@ -1,5 +1,9 @@
-html{
-	/* background-image: url("../img/Portada.jpg"); */
+body{
+	background-image: url("../img/Portada.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .titulo{
 	margin-top: 100px;
@@ -14,4 +18,27 @@ html{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.bt-read{
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #e9ecef;
+  opacity: 1;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  display: inline-block;
+  text-align: left;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.label-bt{
+  padding-top: calc(.375rem + 1px);
+  padding-bottom: calc(.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+  text-align: left;
+  display: inline;
 }
