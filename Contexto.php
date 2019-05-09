@@ -148,42 +148,51 @@
             </div>
           </div>
         </div>
+
         <div class="col-sm-6">
           <div class="col-sm-12">
           <div class="card">
             <div class="card-body">
+
               <table class="table">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Palabra</th>
                     <th scope="col">Traducción</th>
+                    <!--
                     <th scope="col">Pronunciación</th>
                     <th scope="col">Imagen</th>
+                  -->
                   </tr>
                 </thead>
 
-
-
-
                 <tbody>
+                            <?php
+                                $query = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '$contexto' && Palabra LIKE '%$palabra%'";
+                                $result=mysqli_query($link,$query); 
+                                  if (mysqli_num_rows($result)>0)
+                                  {
+                                    while ($row2 = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                                    {
+                                      $palab = $row2["Palabra"];
+                                      $trad = $row2["Traducción"];
+                                      //palab = PALABRA EN ESPAÑOL
+                                      //trad = TRADUCCION
+                                      ?>
+
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><?php echo "$palab"; ?></th>
+                    <td><?php echo "$trad"; ?></td>
+                    <!--
                     <td>.</td>
                     <td>.</td>
-                    <td>.</td>
+                    -->
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
+
+                  <?php
+                              }
+                            }
+                    ?>
                 </tbody>
 
 
