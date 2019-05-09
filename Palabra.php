@@ -110,6 +110,69 @@
             <div class="card-body">
               <h5 class="card-title text-center">Contextos en los que se emplea "<?php echo "$palabra"  ?>"</h5>
               <?php
+              $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && 
+              Campo_Semántico != 'Gramática' && Campo_Semántico != ' ' && Campo_Semántico != '.' && Campo_Semántico != '?' &&Palabra LIKE '%$palabra%'";
+              $result=mysqli_query($link,$query);
+              if (mysqli_num_rows($result)>0)
+              {
+                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                {
+                  $context = $row['Campo_Semántico'];
+                  if ($context != '') {
+                    ?>
+                    <div class="row mt-3">
+                      <div class="col-md-12 col-12">
+                        <div class="card">
+                          <div class="card-header text-center">
+
+                            <a href="Contexto.php?contexto=<?php echo ($context); ?>&palabra=<?php echo ($palabra); ?>"><?php echo ($context); ?></a>
+                          </div>
+                          <div class="card-body">
+                            <?php
+                            $query2 = "SELECT Palabra, Traducción FROM concentrado_P WHERE Campo_Semántico = '" . $row['Campo_Semántico'] ."' && Palabra LIKE '%$palabra%' LIMIT 0,2";
+                            $result2=mysqli_query($link,$query2);
+                            ?>
+                            <table class="table">
+
+                              <tbody>
+                                <?php
+                                if (mysqli_num_rows($result2)>0)
+                                {
+                                  while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC))
+                                  {
+                                    $palab = $row2["Palabra"];
+                                    $trad = $row2["Traducción"];
+                                      //palab = PALABRA EN ESPAÑOL
+                                      //trad = TRADUCCION
+                                    ?>
+                                    <tr>
+                                      <td class="text-center"><?php echo "$palab"; ?></td>
+                                    </tr>
+                                    <?php
+                                  }
+                                }
+                                ?>
+                              </tbody>
+                            </table> 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <?php
+                  }
+                }
+              }else{
+                echo "Fallo al obtener Contextos";
+              }
+              ?>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Usos Gramaticales de  "<?php echo "$palabra"  ?>"</h5>
+              <?php
                 $query = "SELECT distinct Campo_Semántico FROM concentrado_P WHERE Campo_Semántico != 'Expresión' && 
                 Campo_Semántico != 'Gramática' && Campo_Semántico != ' ' && Campo_Semántico != '.' && Campo_Semántico != '?' &&Palabra LIKE '%$palabra%'";
                 $result=mysqli_query($link,$query);
@@ -133,12 +196,7 @@
                               $result2=mysqli_query($link,$query2);
                               ?>
                               <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th>Palabra</th>
-                                    <th>Traducción</th>
-                                  </tr>
-                                </thead>
+                                
                                 <tbody>
                                   <?php
                                   if (mysqli_num_rows($result2)>0)
@@ -147,10 +205,11 @@
                                     {
                                       $palab = $row2["Palabra"];
                                       $trad = $row2["Traducción"];
+                                      //palab = PALABRA EN ESPAÑOL
+                                      //trad = TRADUCCION
                                       ?>
                                       <tr>
-                                        <td><?php echo "$palab"; ?></td>
-                                        <td><?php echo "$trad"; ?></td>
+                                        <td class="text-center"><?php echo "$palab"; ?></td>
                                       </tr>
                                       <?php
                                     }
@@ -169,16 +228,6 @@
                   echo "Fallo al obtener Contextos";
                 }
               ?>
-              
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title text-center">Usos Gramaticales de  "<?php echo "$palabra"  ?>"</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              
             </div>
           </div>
         </div>
