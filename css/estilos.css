@@ -1,5 +1,5 @@
 body{
-	background-image: url("../img/Portada.jpg");
+	background-image: url("../img/Portada_Oscura.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -8,9 +8,10 @@ body{
 .titulo{
 	margin-top: 100px;
 	border-style: solid;
-  	border-color: green;
+  	border-color: white;
   	border-left-style: none;
   	border-right-style: none;
+    color: white;
 }
 
 .bg-image {
@@ -37,6 +38,7 @@ body{
   padding-top: calc(.375rem + 1px);
   padding-bottom: calc(.375rem + 1px);
   margin-bottom: 0;
+  color: white;
   font-size: inherit;
   line-height: 1.5;
   text-align: left;

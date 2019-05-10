@@ -36,7 +36,7 @@
       <div class="bt-read"><?php echo "$palabra" ?></div>
     </div>
     <div class="col-sm-12 col-md-4 mt-3 mt-sm-0">
-      Traducción Literal
+      <div class="label-bt">Traducción Literal</div>
       <?php
       $query = "SELECT Traducción from concentrado_P WHERE Palabra LIKE '%".$palabra."%' LIMIT 0,1";
       
@@ -151,7 +151,7 @@
             <div class="card-body">
               <h5 class="card-title text-center">Usos Gramaticales de  "<?php echo "$palabra"  ?>"</h5>
               <?php
-                $query = "SELECT distinct Tipo FROM concentrado_P WHERE Tipo != 'Expresión' && Palabra LIKE '%$palabra%'";
+                $query = "SELECT distinct Tipo FROM concentrado_P WHERE Tipo != 'Expresión' && Tipo != '?' && Palabra LIKE '%$palabra%'";
                 $result=mysqli_query($link,$query);
                 if (mysqli_num_rows($result)>0)
                 {

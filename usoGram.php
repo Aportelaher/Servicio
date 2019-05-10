@@ -47,7 +47,7 @@
           <div class="col-md-1">
           </div>
           <div class="col-md-2">
-            <label for="palabra" class="col-form-label">Palabra</label>
+            <label for="palabra" class="col-form-label"><div class="label-bt">Palabra</div></label>
           </div>
           <div class="col-md-4">
             <input type="text" READONLY class="form-control" id="palabra" placeholder=<?php echo "$palabra" ?>>
@@ -57,7 +57,7 @@
       <div class="col-md-7">
         <div class="d-flex justify-content-start">
           <div class="col-md-2">
-            <label for="palabra" class="col-form-label">Traducción Literal</label>
+            <label for="palabra" class="col-form-label"><div class="label-bt">Traducción Literal</div></label>
           </div>
           <div class="col-md-3">
             <?php
@@ -157,8 +157,8 @@
                   <tr>
                     <th scope="col">Palabra</th>
                     <th scope="col">Traducción</th>
-                    <th scope="col">Pronunciación</th>
-                    <th scope="col">Imagen</th>
+                    <!--<th scope="col">Pronunciación</th>
+                    <th scope="col">Imagen</th>-->
                   </tr>
                 </thead>
 
@@ -166,24 +166,32 @@
 
 
                 <tbody>
+                    <?php
+                                $query = "SELECT Palabra, Traducción FROM concentrado_P WHERE Tipo = '$contexto' && Palabra LIKE '%$palabra%'";
+                                $result=mysqli_query($link,$query); 
+                                  if (mysqli_num_rows($result)>0)
+                                  {
+                                    while ($row2 = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                                    {
+                                      $palab = $row2["Palabra"];
+                                      $trad = $row2["Traducción"];
+                                      //palab = PALABRA EN ESPAÑOL
+                                      //trad = TRADUCCION
+                                      ?>
+
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><?php echo "$palab"; ?></th>
+                    <td><?php echo "$trad"; ?></td>
+                    <!--
                     <td>.</td>
                     <td>.</td>
-                    <td>.</td>
+                    -->
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
+
+                  <?php
+                              }
+                            }
+                    ?>
                 </tbody>
 
 
