@@ -64,8 +64,8 @@
       <a href="index.php" class="btn btn-primary">Buscar Nueva Palabra</a>
     </div>
   </div>
-  
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">

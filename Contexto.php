@@ -39,62 +39,38 @@
 <img class="mySlides" src="img/Portada.jpg" style="width:100%">-->
 
 <div class="container mt-4">
-  <div class="row">
-    
-    <div class="d-flex justify-content-center">
-      <div class="col-md-5">
-        <div class="d-flex justify-content-end">
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-2">
-            <label for="palabra" class="col-form-label">Palabra</label>
-          </div>
-          <div class="col-md-4">
-            <input type="text" READONLY class="form-control" id="palabra" placeholder=<?php echo "$palabra" ?>>
-          </div>
+  <div class="row text-center">
+    <div class="col-sm-12 col-md-4">
+      <div class="label-bt">Palabra</div>
+      <div class="bt-read"><?php echo "$palabra" ?></div>
+    </div>
+    <div class="col-sm-12 col-md-4 mt-3 mt-sm-0">
+      <div class="label-bt">Traducción Literal</div>
+      <?php
+      $query = "SELECT Traducción from concentrado_P WHERE Palabra LIKE '%".$palabra."%' LIMIT 0,1";
+      
+      $result = mysqli_query($link,$query);
+      if (mysqli_num_rows($result)>0)
+      {
+        ?>
+        <div class="bt-read"><?php
+        $i = 0;
+        while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+        {
+          echo($row['Traducción']);
+        }
+          ?>
         </div>
-      </div>
-      <div class="col-md-7">
-        <div class="d-flex justify-content-start">
-          <div class="col-md-2">
-            <label for="palabra" class="col-form-label">Traducción Literal</label>
-          </div>
-          <div class="col-md-3">
-            <?php
-              $query = "SELECT Traducción from concentrado_P WHERE Palabra = '$palabra'";
-              $result = mysqli_query($link,$query);
-
-              if (mysqli_num_rows($result)>0)
-              {
-                ?><input type="text" READONLY class="form-control" id="inputEmail3" placeholder="<?php
-                $i = 0;
-                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-                {
-                  if ($i < mysqli_num_rows($result))
-                  {
-                    echo($row['Traducción'].", ");
-                  }else{
-                    echo($row['Traducción']);
-                  }
-                  $i++;
-                }
-                ?>
-                ">
-                <?php
-              }else{
-                ?>
-                <input type="text" READONLY/ class="form-control" id="inputEmail3" placeholder="">
-                <?php
-              }
-            ?>
-          </div>
-          <div class="col-md-3">
-            <a href="index.php" class="btn btn-primary">Buscar Nueva Palabra</a><br>
-          </div>
-          <div class="col-md-2">
-          </div>
-        </div>
-      </div>
+          <?php
+        }else{
+          ?>
+          No se encontro una traducción literal
+          <?php
+        }
+        ?>
+    </div>
+    <div class="col-sm-12 col-md-4 mt-3 mt-sm-0">
+      <a href="index.php" class="btn btn-primary">Buscar Nueva Palabra</a>
     </div>
   </div>
 </div>
